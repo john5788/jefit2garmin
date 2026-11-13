@@ -1,0 +1,16 @@
+# Everything of the user's: settings, credentials, exercise map, sync record, caches, tokens
+userdata/*
+!userdata/README.md
+
+# A config.toml in the project root (a common mistake) still holds passwords
+/config.toml
+
+# Build output (pip wheel, python -m build)
+build/
+dist/
+
+# Python
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/

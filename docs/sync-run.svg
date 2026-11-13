@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1040" viewBox="0 0 1100 1040" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <title>jefit2garmin: one sync run</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555"/>
+    </marker>
+    <style>
+      .title { font-size: 20px; font-weight: 600; fill: #222; }
+      .h { font-family: Consolas, Menlo, monospace; font-size: 14px; font-weight: 600; fill: #1f3b66; }
+      .t { font-size: 12px; fill: #333; }
+      .s { font-size: 11px; fill: #666; }
+      .code { font-family: Consolas, Menlo, monospace; font-size: 12px; fill: #333; }
+      .act { font-family: Consolas, Menlo, monospace; font-size: 10.5px; fill: #333; }
+      .lbl { font-size: 11px; fill: #555; }
+      .col { font-size: 12px; font-weight: 600; fill: #555; }
+      .line { stroke: #555; stroke-width: 1.4; fill: none; }
+      .step { fill: #e8f0fe; stroke: #4a6fa5; stroke-width: 1.5; }
+      .inner { fill: #ffffff; stroke: #4a6fa5; stroke-width: 1.2; }
+      .file { fill: #fff8e1; stroke: #b08900; stroke-width: 1.2; }
+      .svc { fill: #f3e8fd; stroke: #7b5ea7; stroke-width: 1.2; }
+      .decision { fill: #ffffff; stroke: #4a6fa5; stroke-width: 1.5; }
+      .action { fill: #ffffff; stroke: #9aa0a6; stroke-width: 1; }
+      .end { fill: #f1f3f4; stroke: #5f6368; stroke-width: 1.5; }
+    </style>
+  </defs>
+  <rect width="1100" height="1040" fill="#ffffff"/>
+  <text x="40" y="36" class="title">jefit2garmin: one sync run (App.run)</text>
+  <text x="40" y="58" class="col">Steps</text>
+  <text x="640" y="58" class="col">Reads (arrow in) and writes (arrow out)</text>
+
+  <!-- 1. check_exercise_map -->
+  <rect x="40" y="70" width="520" height="150" rx="8" class="step"/>
+  <text x="58" y="96" class="h">1  check_exercise_map()</text>
+  <text x="58" y="120" class="t">Get both exercise lists: from the cache, downloaded when missing,</text>
+  <text x="58" y="137" class="t">older than cache_max_days, or newer data is needed.</text>
+  <text x="58" y="161" class="t">Check every line of exercise_map.toml against them:</text>
+  <text x="58" y="178" class="t">· label mismatch, retired ID → warning</text>
+  <text x="58" y="195" class="t">· invalid Garmin pair → stop the run (or leave the exercise out</text>
+  <text x="66" y="210" class="t">if Garmin's list couldn't be downloaded to confirm it)</text>
+
+  <rect x="640" y="74" width="420" height="30" rx="4" class="svc"/>
+  <text x="652" y="94" class="t">Jefit exercise list</text><text x="1048" y="94" text-anchor="end" class="s">cached · Jefit history page</text>
+  <rect x="640" y="110" width="420" height="30" rx="4" class="svc"/>
+  <text x="652" y="130" class="t">Garmin exercise list</text><text x="1048" y="130" text-anchor="end" class="s">cached · public, no login</text>
+  <rect x="640" y="146" width="420" height="30" rx="4" class="file"/>
+  <text x="652" y="166" class="code">exercise_map.toml</text>
+  <rect x="640" y="182" width="420" height="30" rx="4" class="file"/>
+  <text x="652" y="202" class="code">garmin_exercises.md</text><text x="1048" y="202" text-anchor="end" class="s">rewritten when the Garmin list is newer</text>
+  <line x1="638" y1="89" x2="562" y2="89" class="line" marker-end="url(#arrow)"/>
+  <line x1="638" y1="125" x2="562" y2="125" class="line" marker-end="url(#arrow)"/>
+  <line x1="638" y1="161" x2="562" y2="161" class="line" marker-end="url(#arrow)"/>
+  <line x1="560" y1="197" x2="636" y2="197" class="line" marker-end="url(#arrow)"/>
+
+  <line x1="300" y1="220" x2="300" y2="248" class="line" marker-end="url(#arrow)"/>
+
+  <!-- 2. find_sessions -->
+  <rect x="40" y="250" width="520" height="90" rx="8" class="step"/>
+  <text x="58" y="276" class="h">2  find_sessions()</text>
+  <text x="58" y="300" class="t">Pick the days: --date / --since / --until, else the last window_days</text>
+  <text x="58" y="317" class="t">plus days never synced. Download each day's sessions; warn about</text>
+  <text x="58" y="334" class="t">sessions deleted in Jefit.</text>
+
+  <rect x="640" y="258" width="420" height="30" rx="4" class="svc"/>
+  <text x="652" y="278" class="t">Jefit workout calendar, sessions</text><text x="1048" y="278" text-anchor="end" class="s">always downloaded</text>
+  <rect x="640" y="296" width="420" height="30" rx="4" class="file"/>
+  <text x="652" y="316" class="code">sync_state.db</text><text x="1048" y="316" text-anchor="end" class="s">first run, synced days, past sessions</text>
+  <line x1="638" y1="273" x2="562" y2="273" class="line" marker-end="url(#arrow)"/>
+  <line x1="638" y1="311" x2="562" y2="311" class="line" marker-end="url(#arrow)"/>
+
+  <line x1="300" y1="340" x2="300" y2="368" class="line" marker-end="url(#arrow)"/>
+
+  <!-- add_new_exercises -->
+  <rect x="40" y="370" width="520" height="80" rx="8" class="step"/>
+  <text x="58" y="396" class="h">   add_new_exercises()</text>
+  <text x="58" y="420" class="t">Exercise not in the map → suggest a Garmin match → append it to</text>
+  <text x="58" y="437" class="t">[unreviewed]. Postponed to a later run if a list is unavailable.</text>
+
+  <rect x="640" y="378" width="420" height="30" rx="4" class="svc"/>
+  <text x="652" y="398" class="t">Jefit exercise list, Garmin exercise list</text><text x="1048" y="398" text-anchor="end" class="s">from step 1</text>
+  <rect x="640" y="414" width="420" height="30" rx="4" class="file"/>
+  <text x="652" y="434" class="code">exercise_map.toml</text><text x="1048" y="434" text-anchor="end" class="s">new lines appended (also in a dry run)</text>
+  <line x1="638" y1="393" x2="562" y2="393" class="line" marker-end="url(#arrow)"/>
+  <line x1="560" y1="429" x2="636" y2="429" class="line" marker-end="url(#arrow)"/>
+
+  <line x1="300" y1="450" x2="300" y2="478" class="line" marker-end="url(#arrow)"/>
+
+  <!-- 3. plan -->
+  <rect x="40" y="480" width="520" height="210" rx="8" class="step"/>
+  <text x="58" y="506" class="h">3  plan()</text>
+  <text x="140" y="506" class="s">for each session</text>
+  <rect x="58" y="520" width="230" height="110" rx="6" class="inner"/>
+  <text x="70" y="540" class="code">prepare()</text>
+  <text x="70" y="560" class="s">rest timers: frozen in the sync</text>
+  <text x="70" y="574" class="s">record, else from the routine</text>
+  <text x="70" y="594" class="s">WorkoutBuilder.build()</text>
+  <text x="70" y="608" class="s">→ GarminWorkout: sets, fingerprint</text>
+  <line x1="288" y1="575" x2="310" y2="575" class="line" marker-end="url(#arrow)"/>
+  <rect x="312" y="520" width="230" height="110" rx="6" class="inner"/>
+  <text x="324" y="540" class="code">decide()</text>
+  <text x="324" y="560" class="s">fingerprint vs. the sync record</text>
+  <text x="324" y="574" class="s">watch activity overlapping it?</text>
+  <text x="324" y="588" class="s">edited or deleted in Connect?</text>
+  <text x="324" y="608" class="s">→ one Action per session (a Job)</text>
+  <rect x="58" y="645" width="74" height="24" rx="12" class="action"/><text x="95" y="661" text-anchor="middle" class="act">UNCHANGED</text>
+  <rect x="140" y="645" width="62" height="24" rx="12" class="action"/><text x="171" y="661" text-anchor="middle" class="act">UPDATE</text>
+  <rect x="210" y="645" width="62" height="24" rx="12" class="action"/><text x="241" y="661" text-anchor="middle" class="act">CREATE</text>
+  <rect x="280" y="645" width="58" height="24" rx="12" class="action"/><text x="309" y="661" text-anchor="middle" class="act">MERGE</text>
+  <rect x="346" y="645" width="50" height="24" rx="12" class="action"/><text x="371" y="661" text-anchor="middle" class="act">WAIT</text>
+  <rect x="404" y="645" width="50" height="24" rx="12" class="action"/><text x="429" y="661" text-anchor="middle" class="act">SKIP</text>
+
+  <rect x="640" y="490" width="420" height="30" rx="4" class="svc"/>
+  <text x="652" y="510" class="t">Jefit routines (rest timers)</text><text x="1048" y="510" text-anchor="end" class="s">cached; only if not frozen yet</text>
+  <rect x="640" y="528" width="420" height="30" rx="4" class="file"/>
+  <text x="652" y="548" class="code">sync_state.db</text><text x="1048" y="548" text-anchor="end" class="s">record: fingerprint, timers, activity</text>
+  <rect x="640" y="566" width="420" height="30" rx="4" class="svc"/>
+  <text x="652" y="586" class="t">Garmin activities, their current sets</text><text x="1048" y="586" text-anchor="end" class="s">logs in on first use</text>
+  <rect x="640" y="604" width="420" height="30" rx="4" class="file"/>
+  <text x="652" y="624" class="code">sync_state.db</text><text x="1048" y="624" text-anchor="end" class="s">deleted activities; timers now frozen</text>
+  <line x1="638" y1="505" x2="562" y2="505" class="line" marker-end="url(#arrow)"/>
+  <line x1="638" y1="543" x2="562" y2="543" class="line" marker-end="url(#arrow)"/>
+  <line x1="638" y1="581" x2="562" y2="581" class="line" marker-end="url(#arrow)"/>
+  <line x1="560" y1="619" x2="636" y2="619" class="line" marker-end="url(#arrow)"/>
+
+  <line x1="300" y1="690" x2="300" y2="718" class="line" marker-end="url(#arrow)"/>
+
+  <!-- 4. dry run? -->
+  <polygon points="300,720 380,750 300,780 220,750" class="decision"/>
+  <text x="300" y="754" text-anchor="middle" class="code">dry run?</text>
+  <path d="M220,750 H130 V808" class="line" marker-end="url(#arrow)"/>
+  <text x="168" y="742" class="lbl">yes</text>
+  <path d="M380,750 H410 V808" class="line" marker-end="url(#arrow)"/>
+  <text x="388" y="742" class="lbl">no</text>
+
+  <rect x="40" y="810" width="180" height="80" rx="8" class="step"/>
+  <text x="54" y="834" class="h">4  show_dry_run()</text>
+  <text x="54" y="856" class="s">prints what would be</text>
+  <text x="54" y="870" class="s">updated, created, merged</text>
+
+  <rect x="250" y="810" width="310" height="150" rx="8" class="step"/>
+  <text x="264" y="834" class="h">4  confirm_creates()</text>
+  <text x="264" y="852" class="s">asks first if over confirm_creates_over</text>
+  <text x="264" y="876" class="h">   execute(job)</text>
+  <text x="264" y="896" class="s">UPDATE: back up watch sets, replace sets</text>
+  <text x="264" y="911" class="s">CREATE: new activity, description, sets</text>
+  <text x="264" y="926" class="s">MERGE: sets onto the watch activity, delete ours</text>
+  <text x="264" y="946" class="s">push_sets(): record what Garmin stored</text>
+
+  <rect x="640" y="836" width="420" height="30" rx="4" class="svc"/>
+  <text x="652" y="856" class="t">Garmin: write sets, create, delete</text><text x="1048" y="856" text-anchor="end" class="s">never in a dry run</text>
+  <rect x="640" y="874" width="420" height="30" rx="4" class="file"/>
+  <text x="652" y="894" class="code">sync_state.db</text><text x="1048" y="894" text-anchor="end" class="s">record per session, backups; not in a dry run</text>
+  <line x1="560" y1="851" x2="636" y2="851" class="line" marker-end="url(#arrow)"/>
+  <line x1="560" y1="889" x2="636" y2="889" class="line" marker-end="url(#arrow)"/>
+
+  <!-- report -->
+  <path d="M130,890 V1000 H218" class="line" marker-end="url(#arrow)"/>
+  <line x1="405" y1="960" x2="405" y2="983" class="line" marker-end="url(#arrow)"/>
+  <rect x="220" y="985" width="300" height="34" rx="8" class="end"/>
+  <text x="370" y="1007" text-anchor="middle" class="t">Report → cli.py prints the summary</text>
+
+  <!-- legend -->
+  <rect x="640" y="960" width="14" height="14" class="step"/><text x="660" y="972" class="s">step in App</text>
+  <rect x="760" y="960" width="14" height="14" class="svc"/><text x="780" y="972" class="s">Jefit / Garmin data</text>
+  <rect x="900" y="960" width="14" height="14" class="file"/><text x="920" y="972" class="s">local file</text>
+</svg>

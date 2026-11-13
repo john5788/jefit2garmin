@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1420" height="950" viewBox="0 0 1420 950" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <title>jefit2garmin: components and data</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555"/>
+    </marker>
+    <marker id="arrowb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a6fa5"/>
+    </marker>
+    <style>
+      .title { font-size: 20px; font-weight: 600; fill: #222; }
+      .h { font-size: 14px; font-weight: 600; fill: #222; }
+      .t { font-size: 12px; fill: #333; }
+      .s { font-size: 11px; fill: #555; }
+      .code { font-family: Consolas, Menlo, monospace; font-size: 12px; fill: #333; }
+      .codes { font-family: Consolas, Menlo, monospace; font-size: 11px; fill: #333; }
+      .step { font-family: Consolas, Menlo, monospace; font-size: 12px; font-weight: 600; fill: #1f3b66; }
+      .m { font-family: Consolas, Menlo, monospace; font-size: 11px; font-weight: 600; fill: #333; }
+      .lbl { font-size: 11px; fill: #555; }
+      .call { font-family: Consolas, Menlo, monospace; font-size: 10.5px; fill: #1f3b66; }
+      .ret { font-size: 10.5px; fill: #1f3b66; font-style: italic; }
+      .grp { font-size: 12px; font-weight: 600; fill: #555; }
+      .line { stroke: #555; stroke-width: 1.4; fill: none; }
+      .use { stroke: #4a6fa5; stroke-width: 1.5; fill: none; }
+      .flow { stroke: #4a6fa5; stroke-width: 2; fill: none; }
+      .app { fill: #e8f0fe; stroke: #4a6fa5; stroke-width: 1.5; }
+      .stepbox { fill: #ffffff; stroke: #4a6fa5; stroke-width: 1.2; }
+      .part { fill: #ffffff; stroke: #4a6fa5; stroke-width: 1.8; }
+      .client { fill: #e6f4ea; stroke: #3c8d5a; stroke-width: 1.5; }
+      .file { fill: #fff8e1; stroke: #b08900; stroke-width: 1.2; }
+      .svc { fill: #f3e8fd; stroke: #7b5ea7; stroke-width: 1.5; }
+      .cli { fill: #f1f3f4; stroke: #5f6368; stroke-width: 1.5; }
+      .note { fill: #fafafa; stroke: #c4c7c5; stroke-width: 1; }
+      .group { fill: none; stroke: #9aa0a6; stroke-width: 1.2; stroke-dasharray: 5 4; }
+    </style>
+  </defs>
+  <rect width="1420" height="950" fill="#ffffff"/>
+  <text x="30" y="36" class="title">jefit2garmin: components and data</text>
+
+  <!-- ===== left column: config, cli ===== -->
+  <rect x="35" y="70" width="190" height="36" rx="3" class="file"/>
+  <text x="130" y="93" text-anchor="middle" class="code">userdata/config.toml</text>
+  <line x1="130" y1="106" x2="130" y2="148" class="line" marker-end="url(#arrow)"/>
+  <text x="138" y="132" class="lbl">Settings.load()</text>
+
+  <rect x="30" y="150" width="200" height="130" rx="8" class="cli"/>
+  <text x="46" y="174" class="h">cli.py</text>
+  <text x="46" y="196" class="code">main()</text>
+  <text x="46" y="213" class="s">parses the options, runs App,</text>
+  <text x="46" y="227" class="s">prints the Report</text>
+  <text x="46" y="251" class="code">reset_app_data()</text>
+  <text x="46" y="268" class="s">--reset: deletes userdata/state/</text>
+
+  <line x1="230" y1="190" x2="288" y2="190" class="line" marker-end="url(#arrow)"/>
+  <text x="236" y="183" class="lbl">options</text>
+  <line x1="290" y1="240" x2="232" y2="240" class="line" marker-end="url(#arrow)"/>
+  <text x="240" y="233" class="lbl">Report</text>
+
+  <!-- ===== App ===== -->
+  <rect x="290" y="60" width="790" height="570" rx="10" class="app"/>
+  <text x="305" y="84" class="h">App</text>
+  <text x="340" y="84" class="s">app.py · App.run() does steps 1–4 in order; the arrows show which part each step uses</text>
+
+  <!-- steps -->
+  <rect x="310" y="96" width="300" height="78" rx="6" class="stepbox"/>
+  <text x="322" y="116" class="step">1 check_exercise_map()</text>
+  <text x="322" y="135" class="s">gets the Jefit and Garmin exercise lists (cached),</text>
+  <text x="322" y="149" class="s">checks every map line; stops on an invalid pair.</text>
+  <text x="322" y="165" class="s">Writes garmin_exercises.md.</text>
+
+  <line x1="460" y1="174" x2="460" y2="194" class="flow" marker-end="url(#arrowb)"/>
+
+  <rect x="310" y="196" width="300" height="110" rx="6" class="stepbox"/>
+  <text x="322" y="216" class="step">2 find_sessions()</text>
+  <text x="322" y="234" class="s">jefit.workout_dates(), sessions_on(): the sessions</text>
+  <text x="322" y="248" class="s">on the selected days (options, or the window plus</text>
+  <text x="322" y="262" class="s">never-synced days from the sync record)</text>
+  <text x="322" y="283" class="m">add_new_exercises()</text>
+  <text x="322" y="298" class="s">jefit.exercise() for each exercise not in the map</text>
+
+  <line x1="460" y1="306" x2="460" y2="334" class="flow" marker-end="url(#arrowb)"/>
+  <text x="468" y="325" class="ret">sessions</text>
+
+  <rect x="310" y="336" width="300" height="150" rx="6" class="stepbox"/>
+  <text x="322" y="356" class="step">3 plan()</text><text x="388" y="356" class="s">for each session:</text>
+  <text x="322" y="378" class="m">prepare()</text>
+  <text x="336" y="393" class="s">rest timers: frozen in the sync record, else</text>
+  <text x="336" y="407" class="s">jefit.routine_for_day(); then build the sets</text>
+  <text x="322" y="429" class="m">decide()</text>
+  <text x="336" y="444" class="s">garmin.strength_activities(), exercise_sets()</text>
+  <text x="336" y="458" class="s">→ Action: UNCHANGED, UPDATE, CREATE,</text>
+  <text x="336" y="472" class="s">MERGE, WAIT or SKIP</text>
+
+  <line x1="460" y1="486" x2="460" y2="514" class="flow" marker-end="url(#arrowb)"/>
+  <text x="468" y="505" class="ret">Jobs (session, sets, Action)</text>
+
+  <rect x="310" y="516" width="300" height="94" rx="6" class="stepbox"/>
+  <text x="322" y="536" class="step">4 execute(job)</text><text x="438" y="536" class="s">or show_dry_run()</text>
+  <text x="322" y="555" class="s">UPDATE, CREATE, MERGE through garmin: replace</text>
+  <text x="322" y="569" class="s">sets, create or delete activities. Each session</text>
+  <text x="322" y="583" class="s">is recorded as soon as it is done.</text>
+  <text x="322" y="600" class="s">A dry run only prints what it would do.</text>
+
+  <!-- parts -->
+  <rect x="830" y="110" width="230" height="78" rx="6" class="part"/>
+  <text x="845" y="132" class="h">ExerciseMap</text>
+  <text x="845" y="148" class="codes">exercise_map.py</text>
+  <text x="845" y="166" class="s">the mapping file: checks it, suggests</text>
+  <text x="845" y="180" class="s">and appends new exercises</text>
+
+  <rect x="830" y="346" width="230" height="80" rx="6" class="part"/>
+  <text x="845" y="368" class="h">WorkoutBuilder</text>
+  <text x="845" y="384" class="codes">workout_builder.py</text>
+  <text x="845" y="402" class="s">one Jefit session → Garmin sets:</text>
+  <text x="845" y="416" class="s">mapping, units, set timing. No I/O.</text>
+
+  <rect x="830" y="476" width="230" height="84" rx="6" class="part"/>
+  <text x="845" y="498" class="h">SyncState</text>
+  <text x="845" y="514" class="codes">sync_state.py</text>
+  <text x="845" y="532" class="s">the sync record: what was pushed</text>
+  <text x="845" y="546" class="s">where, frozen timers, backups</text>
+
+  <!-- step -> part arrows -->
+  <line x1="610" y1="140" x2="828" y2="140" class="use" marker-end="url(#arrowb)"/>
+  <text x="618" y="134" class="call">check(jefit list, garmin list)</text>
+
+  <path d="M610,282 H816 V172 H828" class="use" marker-end="url(#arrowb)"/>
+  <text x="618" y="276" class="call">suggest(), append_unreviewed()</text>
+
+  <line x1="610" y1="372" x2="828" y2="372" class="use" marker-end="url(#arrowb)"/>
+  <text x="618" y="366" class="call">rest_timers(), build()</text>
+  <line x1="830" y1="404" x2="612" y2="404" class="use" marker-end="url(#arrowb)"/>
+  <text x="618" y="419" class="ret">GarminWorkout: sets + fingerprint</text>
+
+  <path d="M610,452 H800 V500 H828" class="use" marker-end="url(#arrowb)"/>
+  <text x="618" y="446" class="call">get_session(), save_session()</text>
+
+  <line x1="610" y1="545" x2="828" y2="545" class="use" marker-end="url(#arrowb)"/>
+  <text x="618" y="539" class="call">save_session(), save_backup()</text>
+
+  <!-- builder uses the map -->
+  <line x1="1040" y1="346" x2="1040" y2="190" class="use" marker-end="url(#arrowb)"/>
+  <text x="1030" y="252" text-anchor="end" class="call">garmin_exercise_for(id)</text>
+  <text x="1030" y="268" text-anchor="end" class="s">for each logged exercise: which</text>
+  <text x="1030" y="282" text-anchor="end" class="s">Garmin exercise to send, or left</text>
+  <text x="1030" y="296" text-anchor="end" class="s">out (unmapped, skipped)</text>
+
+  <!-- ===== project files ===== -->
+  <rect x="1100" y="60" width="295" height="520" rx="8" class="group"/>
+  <text x="1114" y="80" class="grp">userdata/ · yours; keep it on updates</text>
+  <rect x="1120" y="120" width="255" height="32" rx="3" class="file"/>
+  <text x="1132" y="141" class="code">exercise_map.toml</text>
+  <text x="1365" y="141" text-anchor="end" class="s">yours</text>
+  <rect x="1120" y="162" width="255" height="32" rx="3" class="file"/>
+  <text x="1132" y="183" class="code">state/garmin_exercises.md</text>
+  <rect x="1120" y="500" width="255" height="32" rx="3" class="file"/>
+  <text x="1132" y="521" class="code">state/sync_state.db</text>
+  <text x="1365" y="521" text-anchor="end" class="s">sync record</text>
+
+  <line x1="1060" y1="136" x2="1118" y2="136" class="line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="1060" y1="178" x2="1118" y2="178" class="line" marker-end="url(#arrow)"/>
+  <line x1="1060" y1="516" x2="1118" y2="516" class="line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+
+  <rect x="1120" y="250" width="255" height="96" rx="6" class="note"/>
+  <text x="1132" y="270" class="h">Dry run (--dry-run)</text>
+  <text x="1132" y="290" class="s">· reads Jefit and Garmin as usual</text>
+  <text x="1132" y="306" class="s">· writes the local files: caches,</text>
+  <text x="1140" y="320" class="s">exercise_map.toml, garmin_exercises.md</text>
+  <text x="1132" y="336" class="s">· never writes Garmin or sync_state.db</text>
+
+  <!-- ===== App uses the clients ===== -->
+  <line x1="460" y1="630" x2="460" y2="668" class="line" marker-end="url(#arrow)"/>
+  <line x1="910" y1="630" x2="910" y2="668" class="line" marker-end="url(#arrow)"/>
+  <text x="468" y="653" class="lbl">jefit.… calls named in the steps</text>
+  <text x="918" y="653" class="lbl">garmin.… calls named in the steps</text>
+
+  <!-- ===== clients ===== -->
+  <rect x="290" y="670" width="790" height="130" rx="8" class="group"/>
+  <text x="302" y="688" class="grp">clients/ · the only code that talks to Jefit and Garmin</text>
+  <rect x="330" y="698" width="260" height="88" rx="6" class="client"/>
+  <text x="345" y="720" class="h">JefitClient</text>
+  <text x="345" y="737" class="codes">clients/jefit.py</text>
+  <text x="345" y="757" class="s">sessions; cached exercise list and</text>
+  <text x="345" y="771" class="s">routines (DiskCache)</text>
+  <rect x="780" y="698" width="260" height="88" rx="6" class="client"/>
+  <text x="795" y="720" class="h">GarminClient</text>
+  <text x="795" y="737" class="codes">clients/garmin.py</text>
+  <text x="795" y="757" class="s">activities and sets; cached exercise list;</text>
+  <text x="795" y="771" class="s">logs in on the first account call</text>
+
+  <!-- ===== services ===== -->
+  <rect x="30" y="690" width="200" height="150" rx="14" class="svc"/>
+  <text x="46" y="714" class="h">Jefit</text>
+  <text x="46" y="731" class="s">unofficial web API, read only</text>
+  <text x="46" y="755" class="t">· workout calendar, sessions</text>
+  <text x="46" y="773" class="t">· exercise list (history page)</text>
+  <text x="46" y="791" class="t">· routine list (workouts page)</text>
+  <text x="46" y="809" class="t">· routines (rest timers)</text>
+  <line x1="232" y1="742" x2="328" y2="742" class="line" marker-end="url(#arrow)"/>
+  <text x="250" y="735" class="lbl">HTTPS</text>
+
+  <rect x="1110" y="690" width="280" height="150" rx="14" class="svc"/>
+  <text x="1126" y="714" class="h">Garmin Connect</text>
+  <text x="1126" y="731" class="s">via python-garminconnect</text>
+  <text x="1126" y="755" class="t">· public exercise list (no login)</text>
+  <text x="1126" y="773" class="t">· list activities, read sets</text>
+  <text x="1126" y="791" class="t">· write sets, create, delete</text>
+  <text x="1126" y="809" class="t">· description</text>
+  <line x1="1042" y1="742" x2="1108" y2="742" class="line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="1052" y="735" class="lbl">HTTPS</text>
+
+  <!-- ===== cache folder ===== -->
+  <line x1="460" y1="786" x2="460" y2="868" class="line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="830" y1="786" x2="830" y2="868" class="line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="975" y1="786" x2="975" y2="868" class="line" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <rect x="290" y="830" width="790" height="88" rx="8" class="group"/>
+  <rect x="298" y="836" width="372" height="17" fill="#ffffff"/>
+  <text x="302" y="848" class="grp">userdata/state/ · the app's files; --reset deletes it</text>
+  <rect x="370" y="870" width="180" height="34" rx="3" class="file"/>
+  <text x="382" y="892" class="code">jefit_cache.json</text>
+  <rect x="762" y="870" width="136" height="34" rx="3" class="file"/>
+  <text x="771" y="892" class="codes">garmin_cache.json</text>
+  <rect x="918" y="870" width="112" height="34" rx="3" class="file"/>
+  <text x="927" y="892" class="codes">garmin_tokens/</text>
+
+  <!-- ===== legend ===== -->
+  <rect x="30" y="866" width="14" height="14" class="cli"/><text x="50" y="878" class="s">command line</text>
+  <rect x="30" y="888" width="14" height="14" class="app"/><text x="50" y="900" class="s">app</text>
+  <rect x="150" y="866" width="14" height="14" class="client"/><text x="170" y="878" class="s">API clients</text>
+  <rect x="150" y="888" width="14" height="14" class="file"/><text x="170" y="900" class="s">local file</text>
+  <rect x="150" y="910" width="14" height="14" class="svc"/><text x="170" y="922" class="s">service</text>
+  <line x1="30" y1="925" x2="60" y2="925" class="use" marker-end="url(#arrowb)"/><text x="66" y="929" class="s">call</text>
+</svg>

@@ -1,0 +1,381 @@
+# jefit2garmin built-in exercise map
+#
+# Garmin exercises for Jefit's built-in exercises (d_ IDs, the same for every Jefit user), so
+# new users don't have to map common exercises themselves. Shipped with jefit2garmin and
+# updated with each release.
+#
+# Don't edit this file to change a mapping for yourself: copy the line into [exercises] in your
+# own userdata/exercise_map.toml and edit it there. A line in your file always wins over this
+# one; delete yours to go back to the built-in mapping.
+#
+# Lines have the same format as in exercise_map.toml:
+#
+#   d_000000000002 = { jefit = "Barbell Bench Press", category = "BENCH_PRESS", name = "BARBELL_BENCH_PRESS" }
+#
+#   d_...      Jefit exercise ID; the number is the one in the exercise's Jefit URL:
+#              https://www.jefit.com/my-jefit/exercises/<number>/<name>
+#   jefit      Jefit's name for it (a label for people reading this file).
+#   category   Garmin exercise category.
+#   name       Garmin exercise within that category; "" = the generic exercise of the category.
+#              The pair's page in Garmin Connect is
+#              https://connect.garmin.com/app/exercises/<category>/<name>
+#
+# Reference for valid category and name values: Garmin's public exercise list,
+#   https://connect.garmin.com/web-data/exercises/Exercises.json
+# (JSON: categories -> exercises, with primary and secondary muscles; no login needed). The
+# same list, readable, is written to userdata/state/garmin_exercises.md on every run. A few
+# entries in it are refused by Garmin when sent; see REJECTED_NAMES in clients/garmin.py.
+
+format_version = 1
+map_version = "2026-11-10"
+
+[base]
+# --- BENCH_PRESS --------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/2/barbell-bench-press
+# https://connect.garmin.com/app/exercises/BENCH_PRESS/BARBELL_BENCH_PRESS
+d_000000000002 = { jefit = "Barbell Bench Press", category = "BENCH_PRESS", name = "BARBELL_BENCH_PRESS" }
+
+# https://www.jefit.com/my-jefit/exercises/4/barbell-bench-press-close-grip
+# https://connect.garmin.com/app/exercises/BENCH_PRESS/CLOSE_GRIP_BARBELL_BENCH_PRESS
+d_000000000004 = { jefit = "Barbell Bench Press (Close Grip)", category = "BENCH_PRESS", name = "CLOSE_GRIP_BARBELL_BENCH_PRESS" }
+
+# https://www.jefit.com/my-jefit/exercises/26/dumbbell-bench-press
+# https://connect.garmin.com/app/exercises/BENCH_PRESS/DUMBBELL_BENCH_PRESS
+d_000000000026 = { jefit = "Dumbbell Bench Press", category = "BENCH_PRESS", name = "DUMBBELL_BENCH_PRESS" }
+
+# https://www.jefit.com/my-jefit/exercises/31/dumbbell-incline-bench-press
+# https://connect.garmin.com/app/exercises/BENCH_PRESS/INCLINE_DUMBBELL_BENCH_PRESS
+d_000000000031 = { jefit = "Dumbbell Incline Bench Press", category = "BENCH_PRESS", name = "INCLINE_DUMBBELL_BENCH_PRESS" }
+
+# --- CARDIO -------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/1355/plank-with-alternating-knee-drive
+# https://connect.garmin.com/app/exercises/CARDIO/CARDIO_CORE_CRAWL
+d_000000001355 = { jefit = "Plank with Alternating Knee Drive", category = "CARDIO", name = "CARDIO_CORE_CRAWL" }
+
+# https://www.jefit.com/my-jefit/exercises/1347/jumping-jacks
+# https://connect.garmin.com/app/exercises/CARDIO/JUMPING_JACKS
+d_000000001347 = { jefit = "Jumping Jacks", category = "CARDIO", name = "JUMPING_JACKS" }
+
+# https://www.jefit.com/my-jefit/exercises/927/jump-rope
+# https://connect.garmin.com/app/exercises/CARDIO/JUMP_ROPE
+d_000000000927 = { jefit = "Jump Rope", category = "CARDIO", name = "JUMP_ROPE" }
+
+# --- CORE ---------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/294/barbell-ab-rollout-kneeling
+# https://connect.garmin.com/app/exercises/CORE/BARBELL_ROLLOUT
+d_000000000294 = { jefit = "Barbell Ab Rollout (Kneeling)", category = "CORE", name = "BARBELL_ROLLOUT" }
+
+# https://www.jefit.com/my-jefit/exercises/339/weight-plate-russian-twist
+# https://connect.garmin.com/app/exercises/CORE/RUSSIAN_TWIST
+d_000000000339 = { jefit = "Weight Plate Russian Twist", category = "CORE", name = "RUSSIAN_TWIST" }
+
+# https://www.jefit.com/my-jefit/exercises/62/stability-ball-pull-in
+# https://connect.garmin.com/app/exercises/CORE/SWISS_BALL_JACKKNIFE
+d_000000000062 = { jefit = "Stability Ball Pull-In", category = "CORE", name = "SWISS_BALL_JACKKNIFE" }
+
+# --- CRUNCH -------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/57/air-bike
+# https://connect.garmin.com/app/exercises/CRUNCH/BICYCLE_CRUNCH
+d_000000000057 = { jefit = "Air Bike", category = "CRUNCH", name = "BICYCLE_CRUNCH" }
+
+# https://www.jefit.com/my-jefit/exercises/994/cable-crunch
+# https://connect.garmin.com/app/exercises/CRUNCH/CABLE_CRUNCH
+d_000000000994 = { jefit = "Cable Crunch", category = "CRUNCH", name = "CABLE_CRUNCH" }
+
+# https://www.jefit.com/my-jefit/exercises/77/crunch
+# https://connect.garmin.com/app/exercises/CRUNCH/CRUNCH
+d_000000000077 = { jefit = "Crunch", category = "CRUNCH", name = "CRUNCH" }
+
+# https://www.jefit.com/my-jefit/exercises/1001/hanging-knee-raise-rotational
+# https://connect.garmin.com/app/exercises/CRUNCH/HANGING_KNEE_RAISE_OBLIQUE_CRUNCH
+d_000000001001 = { jefit = "Hanging Knee Raise (Rotational)", category = "CRUNCH", name = "HANGING_KNEE_RAISE_OBLIQUE_CRUNCH" }
+
+# https://www.jefit.com/my-jefit/exercises/79/cable-kneeling-crunch-rope
+# https://connect.garmin.com/app/exercises/CRUNCH/KNEELING_CABLE_CRUNCH
+d_000000000079 = { jefit = "Cable Kneeling Crunch (Rope)", category = "CRUNCH", name = "KNEELING_CABLE_CRUNCH" }
+
+# https://www.jefit.com/my-jefit/exercises/338/reverse-crunch
+# https://connect.garmin.com/app/exercises/CRUNCH/REVERSE_CRUNCH
+d_000000000338 = { jefit = "Reverse Crunch", category = "CRUNCH", name = "REVERSE_CRUNCH" }
+
+# https://www.jefit.com/my-jefit/exercises/342/seated-bench-leg-pull-in
+# https://connect.garmin.com/app/exercises/CRUNCH/REVERSE_CRUNCH_ON_A_BENCH
+d_000000000342 = { jefit = "Seated Bench Leg Pull-In", category = "CRUNCH", name = "REVERSE_CRUNCH_ON_A_BENCH" }
+
+# https://www.jefit.com/my-jefit/exercises/343/seated-leg-tuck
+# https://connect.garmin.com/app/exercises/CRUNCH/REVERSE_CRUNCH_ON_A_BENCH
+d_000000000343 = { jefit = "Seated Leg Tuck", category = "CRUNCH", name = "REVERSE_CRUNCH_ON_A_BENCH" }
+
+# https://www.jefit.com/my-jefit/exercises/60/stability-ball-crunch
+# https://connect.garmin.com/app/exercises/CRUNCH/SWISS_BALL_CRUNCH
+d_000000000060 = { jefit = "Stability Ball Crunch", category = "CRUNCH", name = "SWISS_BALL_CRUNCH" }
+
+# --- CURL ---------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/116/dumbbell-alternating-bicep-curl
+# https://connect.garmin.com/app/exercises/CURL/ALTERNATING_DUMBBELL_BICEPS_CURL
+d_000000000116 = { jefit = "Dumbbell Alternating Bicep Curl", category = "CURL", name = "ALTERNATING_DUMBBELL_BICEPS_CURL" }
+
+# https://www.jefit.com/my-jefit/exercises/115/dumbbell-alternating-incline-curl
+# https://connect.garmin.com/app/exercises/CURL/ALTERNATING_INCLINE_DUMBBELL_BICEPS_CURL
+d_000000000115 = { jefit = "Dumbbell Alternating Incline Curl", category = "CURL", name = "ALTERNATING_INCLINE_DUMBBELL_BICEPS_CURL" }
+
+# https://www.jefit.com/my-jefit/exercises/112/barbell-curl
+# https://connect.garmin.com/app/exercises/CURL/BARBELL_BICEPS_CURL
+d_000000000112 = { jefit = "Barbell Curl", category = "CURL", name = "BARBELL_BICEPS_CURL" }
+
+# https://www.jefit.com/my-jefit/exercises/108/dumbbell-hammer-curl
+# https://connect.garmin.com/app/exercises/CURL/DUMBBELL_HAMMER_CURL
+d_000000000108 = { jefit = "Dumbbell Hammer Curl", category = "CURL", name = "DUMBBELL_HAMMER_CURL" }
+
+# https://www.jefit.com/my-jefit/exercises/107/dumbbell-concentration-curl
+# https://connect.garmin.com/app/exercises/CURL/ONE_ARM_CONCENTRATION_CURL
+d_000000000107 = { jefit = "Dumbbell Concentration Curl", category = "CURL", name = "ONE_ARM_CONCENTRATION_CURL" }
+
+# https://www.jefit.com/my-jefit/exercises/1010/dumbbell-alternating-seated-curl
+# https://connect.garmin.com/app/exercises/CURL/SEATED_ALTERNATING_DUMBBELL_BICEPS_CURL
+d_000000001010 = { jefit = "Dumbbell Alternating Seated Curl", category = "CURL", name = "SEATED_ALTERNATING_DUMBBELL_BICEPS_CURL" }
+
+# --- DEADLIFT -----------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/93/barbell-deadlift
+# https://connect.garmin.com/app/exercises/DEADLIFT/BARBELL_DEADLIFT
+d_000000000093 = { jefit = "Barbell Deadlift", category = "DEADLIFT", name = "BARBELL_DEADLIFT" }
+
+# https://www.jefit.com/my-jefit/exercises/954/barbell-stiff-leg-deadlift
+# https://connect.garmin.com/app/exercises/DEADLIFT/BARBELL_STRAIGHT_LEG_DEADLIFT
+d_000000000954 = { jefit = "Barbell Stiff-Leg Deadlift", category = "DEADLIFT", name = "BARBELL_STRAIGHT_LEG_DEADLIFT" }
+
+# https://www.jefit.com/my-jefit/exercises/955/dumbbell-stiff-leg-deadlift
+# https://connect.garmin.com/app/exercises/DEADLIFT/DUMBBELL_STRAIGHT_LEG_DEADLIFT
+d_000000000955 = { jefit = "Dumbbell Stiff-Leg Deadlift", category = "DEADLIFT", name = "DUMBBELL_STRAIGHT_LEG_DEADLIFT" }
+
+# --- FLYE ---------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/41/dumbbell-fly
+# https://connect.garmin.com/app/exercises/FLYE/DUMBBELL_FLYE
+d_000000000041 = { jefit = "Dumbbell Fly", category = "FLYE", name = "DUMBBELL_FLYE" }
+
+# --- HIP_RAISE ----------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/385/barbell-glute-bridge
+# https://connect.garmin.com/app/exercises/HIP_RAISE/BARBELL_HIP_THRUST_ON_FLOOR
+d_000000000385 = { jefit = "Barbell Glute Bridge", category = "HIP_RAISE", name = "BARBELL_HIP_THRUST_ON_FLOOR" }
+
+# https://www.jefit.com/my-jefit/exercises/194/bridge
+# https://connect.garmin.com/app/exercises/HIP_RAISE/HIP_RAISE
+d_000000000194 = { jefit = "Bridge", category = "HIP_RAISE", name = "HIP_RAISE" }
+
+# https://www.jefit.com/my-jefit/exercises/1385/kettlebell-swing
+# https://connect.garmin.com/app/exercises/HIP_RAISE/KETTLEBELL_SWING
+d_000000001385 = { jefit = "Kettlebell Swing", category = "HIP_RAISE", name = "KETTLEBELL_SWING" }
+
+# https://www.jefit.com/my-jefit/exercises/865/single-leg-glute-bridge
+# https://connect.garmin.com/app/exercises/HIP_RAISE/SINGLE_LEG_HIP_RAISE
+d_000000000865 = { jefit = "Single-Leg Glute Bridge", category = "HIP_RAISE", name = "SINGLE_LEG_HIP_RAISE" }
+
+# --- HIP_STABILITY ------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/1361/side-lying-hip-abduction
+# https://connect.garmin.com/app/exercises/HIP_STABILITY/EXTERNAL_HIP_RAISE
+d_000000001361 = { jefit = "Side-Lying Hip Abduction", category = "HIP_STABILITY", name = "EXTERNAL_HIP_RAISE" }
+
+# --- HIP_SWING ----------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/489/kettlebell-one-arm-swing
+# https://connect.garmin.com/app/exercises/HIP_SWING/ONE_ARM_SWING
+d_000000000489 = { jefit = "Kettlebell One-Arm Swing", category = "HIP_SWING", name = "ONE_ARM_SWING" }
+
+# --- HYPEREXTENSION -----------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/599/stability-ball-back-extension-with-hands-behind-head
+# https://connect.garmin.com/app/exercises/HYPEREXTENSION/SWISS_BALL_HYPEREXTENSION
+d_000000000599 = { jefit = "Stability Ball Back Extension with Hands Behind Head", category = "HYPEREXTENSION", name = "SWISS_BALL_HYPEREXTENSION" }
+
+# --- LATERAL_RAISE ------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/16/cable-front-raise
+# https://connect.garmin.com/app/exercises/LATERAL_RAISE/CABLE_FRONT_RAISE
+d_000000000016 = { jefit = "Cable Front Raise", category = "LATERAL_RAISE", name = "CABLE_FRONT_RAISE" }
+
+# --- LEG_RAISE ----------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/61/hanging-leg-raise
+# https://connect.garmin.com/app/exercises/LEG_RAISE/HANGING_LEG_RAISE
+d_000000000061 = { jefit = "Hanging Leg Raise", category = "LEG_RAISE", name = "HANGING_LEG_RAISE" }
+
+# --- LUNGE --------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/136/dumbbell-lunge
+# https://connect.garmin.com/app/exercises/LUNGE/ALTERNATING_DUMBBELL_LUNGE
+d_000000000136 = { jefit = "Dumbbell Lunge", category = "LUNGE", name = "ALTERNATING_DUMBBELL_LUNGE" }
+
+# https://www.jefit.com/my-jefit/exercises/205/barbell-bulgarian-split-squat
+# https://connect.garmin.com/app/exercises/LUNGE/BARBELL_BULGARIAN_SPLIT_SQUAT
+d_000000000205 = { jefit = "Barbell Bulgarian Split Squat", category = "LUNGE", name = "BARBELL_BULGARIAN_SPLIT_SQUAT" }
+
+# https://www.jefit.com/my-jefit/exercises/749/barbell-lateral-lunge
+# https://connect.garmin.com/app/exercises/LUNGE/BARBELL_SIDE_LUNGE
+d_000000000749 = { jefit = "Barbell Lateral Lunge", category = "LUNGE", name = "BARBELL_SIDE_LUNGE" }
+
+# https://www.jefit.com/my-jefit/exercises/473/dumbbell-reverse-lunge
+# https://connect.garmin.com/app/exercises/LUNGE/DUMBBELL_REVERSE_LUNGE
+d_000000000473 = { jefit = "Dumbbell Reverse Lunge", category = "LUNGE", name = "DUMBBELL_REVERSE_LUNGE" }
+
+# https://www.jefit.com/my-jefit/exercises/1215/bodyweight-lunge
+# https://connect.garmin.com/app/exercises/LUNGE/LUNGE
+d_000000001215 = { jefit = "Bodyweight Lunge", category = "LUNGE", name = "LUNGE" }
+
+# https://www.jefit.com/my-jefit/exercises/1222/bodyweight-walking-lunge
+# https://connect.garmin.com/app/exercises/LUNGE/WALKING_LUNGE
+d_000000001222 = { jefit = "Bodyweight Walking Lunge", category = "LUNGE", name = "WALKING_LUNGE" }
+
+# --- PLANK --------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/484/mountain-climber
+# https://connect.garmin.com/app/exercises/PLANK/MOUNTAIN_CLIMBER
+d_000000000484 = { jefit = "Mountain Climber", category = "PLANK", name = "MOUNTAIN_CLIMBER" }
+
+# https://www.jefit.com/my-jefit/exercises/631/plank
+# https://connect.garmin.com/app/exercises/PLANK/PLANK
+d_000000000631 = { jefit = "Plank", category = "PLANK", name = "PLANK" }
+
+# https://www.jefit.com/my-jefit/exercises/633/side-plank
+# https://connect.garmin.com/app/exercises/PLANK/SIDE_PLANK
+d_000000000633 = { jefit = "Side Plank", category = "PLANK", name = "SIDE_PLANK" }
+
+# --- PLYO ---------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/946/split-jump
+# https://connect.garmin.com/app/exercises/PLYO/ALTERNATING_JUMP_LUNGE
+d_000000000946 = { jefit = "Split Jump", category = "PLYO", name = "ALTERNATING_JUMP_LUNGE" }
+
+# https://www.jefit.com/my-jefit/exercises/476/jump-squat
+# https://connect.garmin.com/app/exercises/PLYO/BODY_WEIGHT_JUMP_SQUAT
+d_000000000476 = { jefit = "Jump Squat", category = "PLYO", name = "BODY_WEIGHT_JUMP_SQUAT" }
+
+# https://www.jefit.com/my-jefit/exercises/826/medicine-ball-overhead-slam
+# https://connect.garmin.com/app/exercises/PLYO/MEDICINE_BALL_SLAM
+d_000000000826 = { jefit = "Medicine Ball Overhead Slam", category = "PLYO", name = "MEDICINE_BALL_SLAM" }
+
+# --- PULL_UP ------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/83/pull-up
+# https://connect.garmin.com/app/exercises/PULL_UP/PULL_UP
+d_000000000083 = { jefit = "Pull-Up", category = "PULL_UP", name = "PULL_UP" }
+
+# https://www.jefit.com/my-jefit/exercises/86/cable-lat-pulldown-wide-grip
+# https://connect.garmin.com/app/exercises/PULL_UP/WIDE_GRIP_LAT_PULLDOWN
+d_000000000086 = { jefit = "Cable Lat Pulldown (Wide Grip)", category = "PULL_UP", name = "WIDE_GRIP_LAT_PULLDOWN" }
+
+# --- PUSH_UP ------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/47/push-up
+# https://connect.garmin.com/app/exercises/PUSH_UP/PUSH_UP
+d_000000000047 = { jefit = "Push-Up", category = "PUSH_UP", name = "PUSH_UP" }
+
+# --- ROW ----------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/88/dumbbell-bent-over-row
+# https://connect.garmin.com/app/exercises/ROW/DUMBBELL_ROW
+d_000000000088 = { jefit = "Dumbbell Bent-Over Row", category = "ROW", name = "DUMBBELL_ROW" }
+
+# https://www.jefit.com/my-jefit/exercises/874/cable-rope-face-pull
+# https://connect.garmin.com/app/exercises/ROW/FACE_PULL
+d_000000000874 = { jefit = "Cable Rope Face Pull", category = "ROW", name = "FACE_PULL" }
+
+# https://www.jefit.com/my-jefit/exercises/818/machine-inverted-row
+# https://connect.garmin.com/app/exercises/ROW/INVERTED_ROW
+d_000000000818 = { jefit = "Machine Inverted Row", category = "ROW", name = "INVERTED_ROW" }
+
+# https://www.jefit.com/my-jefit/exercises/1369/dumbbell-renegade-row
+# https://connect.garmin.com/app/exercises/ROW/RENEGADE_ROW
+d_000000001369 = { jefit = "Dumbbell Renegade Row", category = "ROW", name = "RENEGADE_ROW" }
+
+# https://www.jefit.com/my-jefit/exercises/9/barbell-bent-over-row-reverse-grip
+# https://connect.garmin.com/app/exercises/ROW/REVERSE_GRIP_BARBELL_ROW
+d_000000000009 = { jefit = "Barbell Bent-Over Row (Reverse Grip)", category = "ROW", name = "REVERSE_GRIP_BARBELL_ROW" }
+
+# --- SHOULDER_PRESS -----------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/1150/dumbbell-alternating-press
+# https://connect.garmin.com/app/exercises/SHOULDER_PRESS/ALTERNATING_DUMBBELL_SHOULDER_PRESS
+d_000000001150 = { jefit = "Dumbbell Alternating Press", category = "SHOULDER_PRESS", name = "ALTERNATING_DUMBBELL_SHOULDER_PRESS" }
+
+# https://www.jefit.com/my-jefit/exercises/751/barbell-squat-to-shoulder-press
+# https://connect.garmin.com/app/exercises/SHOULDER_PRESS/BARBELL_FRONT_SQUAT_TO_PUSH_PRESS
+d_000000000751 = { jefit = "Barbell Squat to Shoulder Press", category = "SHOULDER_PRESS", name = "BARBELL_FRONT_SQUAT_TO_PUSH_PRESS" }
+
+# https://www.jefit.com/my-jefit/exercises/1365/dumbbell-push-press
+# https://connect.garmin.com/app/exercises/SHOULDER_PRESS/DUMBBELL_PUSH_PRESS
+d_000000001365 = { jefit = "Dumbbell Push Press", category = "SHOULDER_PRESS", name = "DUMBBELL_PUSH_PRESS" }
+
+# https://www.jefit.com/my-jefit/exercises/884/dumbbell-shoulder-press
+# https://connect.garmin.com/app/exercises/SHOULDER_PRESS/DUMBBELL_SHOULDER_PRESS
+d_000000000884 = { jefit = "Dumbbell Shoulder Press", category = "SHOULDER_PRESS", name = "DUMBBELL_SHOULDER_PRESS" }
+
+# https://www.jefit.com/my-jefit/exercises/35/dumbbell-one-arm-shoulder-press
+# https://connect.garmin.com/app/exercises/SHOULDER_PRESS/SINGLE_ARM_DUMBBELL_SHOULDER_PRESS
+d_000000000035 = { jefit = "Dumbbell One-Arm Shoulder Press", category = "SHOULDER_PRESS", name = "SINGLE_ARM_DUMBBELL_SHOULDER_PRESS" }
+
+# https://www.jefit.com/my-jefit/exercises/447/smith-machine-shoulder-press
+# https://connect.garmin.com/app/exercises/SHOULDER_PRESS/SMITH_MACHINE_OVERHEAD_PRESS
+d_000000000447 = { jefit = "Smith Machine Shoulder Press", category = "SHOULDER_PRESS", name = "SMITH_MACHINE_OVERHEAD_PRESS" }
+
+# --- SHRUG --------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/13/barbell-upright-row
+# https://connect.garmin.com/app/exercises/SHRUG/BARBELL_UPRIGHT_ROW
+d_000000000013 = { jefit = "Barbell Upright Row", category = "SHRUG", name = "BARBELL_UPRIGHT_ROW" }
+
+# --- SIT_UP -------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/345/sit-up
+# https://connect.garmin.com/app/exercises/SIT_UP/SIT_UP
+d_000000000345 = { jefit = "Sit-Up", category = "SIT_UP", name = "SIT_UP" }
+
+# https://www.jefit.com/my-jefit/exercises/686/v-up
+# https://connect.garmin.com/app/exercises/SIT_UP/V_UP
+d_000000000686 = { jefit = "V-Up", category = "SIT_UP", name = "V_UP" }
+
+# --- SQUAT --------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/12/barbell-squat
+# https://connect.garmin.com/app/exercises/SQUAT/BARBELL_BACK_SQUAT
+d_000000000012 = { jefit = "Barbell Squat", category = "SQUAT", name = "BARBELL_BACK_SQUAT" }
+
+# https://www.jefit.com/my-jefit/exercises/137/barbell-front-squat
+# https://connect.garmin.com/app/exercises/SQUAT/BARBELL_FRONT_SQUAT
+d_000000000137 = { jefit = "Barbell Front Squat", category = "SQUAT", name = "BARBELL_FRONT_SQUAT" }
+
+# https://www.jefit.com/my-jefit/exercises/133/barbell-step-up
+# https://connect.garmin.com/app/exercises/SQUAT/BARBELL_STEP_UP
+d_000000000133 = { jefit = "Barbell Step-Up", category = "SQUAT", name = "BARBELL_STEP_UP" }
+
+# https://www.jefit.com/my-jefit/exercises/134/dumbbell-step-up
+# https://connect.garmin.com/app/exercises/SQUAT/DUMBBELL_STEP_UP
+d_000000000134 = { jefit = "Dumbbell Step-Up", category = "SQUAT", name = "DUMBBELL_STEP_UP" }
+
+# https://www.jefit.com/my-jefit/exercises/479/kettlebell-goblet-squat
+# https://connect.garmin.com/app/exercises/SQUAT/GOBLET_SQUAT
+d_000000000479 = { jefit = "Kettlebell Goblet Squat", category = "SQUAT", name = "GOBLET_SQUAT" }
+
+# https://www.jefit.com/my-jefit/exercises/750/prisoner-squat
+# https://connect.garmin.com/app/exercises/SQUAT/PRISONER_SQUAT
+d_000000000750 = { jefit = "Prisoner Squat", category = "SQUAT", name = "PRISONER_SQUAT" }
+
+# https://www.jefit.com/my-jefit/exercises/493/bodyweight-squat
+# https://connect.garmin.com/app/exercises/SQUAT/SQUAT
+d_000000000493 = { jefit = "Bodyweight Squat", category = "SQUAT", name = "SQUAT" }
+
+# --- TOTAL_BODY ---------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/1339/burpee
+# https://connect.garmin.com/app/exercises/TOTAL_BODY/BURPEE
+d_000000001339 = { jefit = "Burpee", category = "TOTAL_BODY", name = "BURPEE" }
+
+# --- TRICEPS_EXTENSION --------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/226/cable-lying-tricep-extension
+# https://connect.garmin.com/app/exercises/TRICEPS_EXTENSION/CABLE_LYING_TRICEPS_EXTENSION
+d_000000000226 = { jefit = "Cable Lying Tricep Extension", category = "TRICEPS_EXTENSION", name = "CABLE_LYING_TRICEPS_EXTENSION" }
+
+# https://www.jefit.com/my-jefit/exercises/159/cable-tricep-pushdown-rope
+# https://connect.garmin.com/app/exercises/TRICEPS_EXTENSION/ROPE_PRESSDOWN
+d_000000000159 = { jefit = "Cable Tricep Pushdown (Rope)", category = "TRICEPS_EXTENSION", name = "ROPE_PRESSDOWN" }
+
+# https://www.jefit.com/my-jefit/exercises/230/dumbbell-seated-one-arm-tricep-extension
+# https://connect.garmin.com/app/exercises/TRICEPS_EXTENSION/SEATED_SINGLE_ARM_OVERHEAD_DUMBBELL_EXTENSION
+d_000000000230 = { jefit = "Dumbbell Seated One-Arm Tricep Extension", category = "TRICEPS_EXTENSION", name = "SEATED_SINGLE_ARM_OVERHEAD_DUMBBELL_EXTENSION" }
+
+# https://www.jefit.com/my-jefit/exercises/1189/single-leg-bench-dip
+# https://connect.garmin.com/app/exercises/TRICEPS_EXTENSION/SINGLE_LEG_DIP
+d_000000001189 = { jefit = "Single-Leg Bench Dip", category = "TRICEPS_EXTENSION", name = "SINGLE_LEG_DIP" }
+
+# https://www.jefit.com/my-jefit/exercises/149/cable-tricep-pushdown-v-bar
+# https://connect.garmin.com/app/exercises/TRICEPS_EXTENSION/TRICEPS_PRESSDOWN
+d_000000000149 = { jefit = "Cable Tricep Pushdown (V-Bar)", category = "TRICEPS_EXTENSION", name = "TRICEPS_PRESSDOWN" }
+
+# --- WARM_UP ------------------------------------------------------------------
+# https://www.jefit.com/my-jefit/exercises/666/bird-dog
+# https://connect.garmin.com/app/exercises/WARM_UP/OPPOSITE_ARM_AND_LEG_BALANCE
+d_000000000666 = { jefit = "Bird Dog", category = "WARM_UP", name = "OPPOSITE_ARM_AND_LEG_BALANCE" }

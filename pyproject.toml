@@ -1,0 +1,30 @@
+[project]
+name = "jefit2garmin"
+version = "0.1.0"
+description = "Copy Jefit strength workouts into Garmin Connect"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+dependencies = [
+    "garminconnect==0.3.17",
+    "requests>=2.33",
+]
+
+[project.scripts]
+jefit2garmin = "jefit2garmin.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=77"]  # 77+ understands the SPDX `license` field
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+jefit2garmin = ["builtin_exercise_map.toml"]  # data files to ship with the code
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
