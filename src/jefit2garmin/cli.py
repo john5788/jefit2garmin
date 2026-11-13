@@ -11,6 +11,7 @@ import shutil
 import sys
 from collections.abc import Callable
 from datetime import date
+from importlib.metadata import version
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
@@ -19,6 +20,8 @@ from .clients.garmin import GarminError
 from .clients.jefit import JefitError
 from .exercise_map import ExerciseMapError
 from .settings import CONFIG_TEMPLATE, Options, Settings
+
+VERSION = version("jefit2garmin")  # from pyproject.toml, via the installed package
 
 log = logging.getLogger("jefit2garmin")  # parent of every module's logger
 
@@ -76,6 +79,7 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="delete userdata/state/ (sync record, caches, Garmin login), then stop; keeps config.toml and exercise_map.toml",
     )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {VERSION}")
     args = parser.parse_args(argv)
 
     if args.reset and (args.date or args.since or args.until or args.overwrite_garmin_edits or args.refresh_caches):
@@ -94,7 +98,7 @@ def main(argv: list[str] | None = None) -> int:
         parser.error(str(exc))
 
     log_file = start_log(settings.log_dir)
-    log.info("=== jefit2garmin %s", " ".join(sys.argv[1:] if argv is None else argv) or "(no options)")
+    log.info("=== jefit2garmin %s: %s", VERSION, " ".join(sys.argv[1:] if argv is None else argv) or "(no options)")
 
     if args.reset:
         reset_app_data(settings, dry_run=args.dry_run, assume_yes=args.yes)

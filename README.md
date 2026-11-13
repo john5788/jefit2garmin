@@ -205,6 +205,7 @@ activity_name = "Strength"   # name of created activities
 ```
 jefit2garmin [--date DAY | --since DAY [--until DAY]] [--dry-run] [--yes]
              [--overwrite-garmin-edits] [--refresh-caches] [--reset] [--config FILE]
+jefit2garmin --version
 ```
 
 | Option | Does |
@@ -216,6 +217,7 @@ jefit2garmin [--date DAY | --since DAY [--until DAY]] [--dry-run] [--yes]
 | `--refresh-caches` | download fresh copies of the exercise lists and routines |
 | `--reset` | delete `userdata/state/` and start over; asks first. Keeps `config.toml` and `exercise_map.toml` and touches nothing in Garmin or Jefit. |
 | `--config FILE` | use a different settings file; jefit2garmin keeps its files next to it (default: `userdata/config.toml`) |
+| `--version` | show which version is installed |
 
 `jefit2garmin --help` shows the same with examples.
 

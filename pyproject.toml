@@ -1,6 +1,6 @@
 [project]
 name = "jefit2garmin"
-version = "0.1.0"
+version = "1.0.0"
 description = "Copy Jefit strength workouts into Garmin Connect"
 license = "AGPL-3.0-or-later"
 license-files = ["LICENSE"]

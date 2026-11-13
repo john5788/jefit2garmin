@@ -231,6 +231,7 @@ Garmin is only logged into if something needs pushing.
 | `--refresh-caches` | download the exercise lists and routines again, whatever their age |
 | `--overwrite-garmin-edits` | replace sets even where they were edited in Garmin Connect (see below) |
 | `--reset` | delete all app data and stop; see below |
+| `--version` | print the version (from pyproject.toml) and stop |
 
 A dry run reads from both services but changes nothing in Garmin and doesn't touch
 `sync_state.db`, which records only what has really been pushed. Local files are updated as in a
